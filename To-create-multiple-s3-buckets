@@ -1,0 +1,15 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_s3_bucket" "example" {
+  count = 10
+
+  bucket = "venkey-08-ec-50-${count.index + 1}"
+  acl    = "private"
+
+  tags = {
+    Name        = "ExampleBucket${count.index + 1}"
+    Environment = "Dev"
+  }
+}
